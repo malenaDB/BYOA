@@ -14,6 +14,9 @@
 		F24792FF25B08D45000E82C5 /* BYOA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F24792FD25B08D45000E82C5 /* BYOA.xcdatamodeld */; };
 		F247930125B08D48000E82C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F247930025B08D48000E82C5 /* Assets.xcassets */; };
 		F247930425B08D48000E82C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F247930225B08D48000E82C5 /* LaunchScreen.storyboard */; };
+		F2746DFA25B8B6BA00A5A3FE /* Affirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2746DF925B8B6BA00A5A3FE /* Affirmation.swift */; };
+		F2746DFC25B8B75700A5A3FE /* AffirmationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2746DFB25B8B75700A5A3FE /* AffirmationsVC.swift */; };
+		F2746DFE25B8E57E00A5A3FE /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2746DFD25B8E57E00A5A3FE /* Quote.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		F247930025B08D48000E82C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F247930325B08D48000E82C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F247930525B08D48000E82C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2746DF925B8B6BA00A5A3FE /* Affirmation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Affirmation.swift; sourceTree = "<group>"; };
+		F2746DFB25B8B75700A5A3FE /* AffirmationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffirmationsVC.swift; sourceTree = "<group>"; };
+		F2746DFD25B8E57E00A5A3FE /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +67,10 @@
 				F24792F425B08D45000E82C5 /* AppDelegate.swift */,
 				F24792F625B08D45000E82C5 /* SceneDelegate.swift */,
 				F24792F825B08D45000E82C5 /* ViewController.swift */,
+				F2746DFB25B8B75700A5A3FE /* AffirmationsVC.swift */,
 				F24792FA25B08D45000E82C5 /* Main.storyboard */,
+				F2746DFD25B8E57E00A5A3FE /* Quote.swift */,
+				F2746DF925B8B6BA00A5A3FE /* Affirmation.swift */,
 				F247930025B08D48000E82C5 /* Assets.xcassets */,
 				F247930225B08D48000E82C5 /* LaunchScreen.storyboard */,
 				F247930525B08D48000E82C5 /* Info.plist */,
@@ -142,8 +151,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F24792FF25B08D45000E82C5 /* BYOA.xcdatamodeld in Sources */,
+				F2746DFC25B8B75700A5A3FE /* AffirmationsVC.swift in Sources */,
 				F24792F925B08D45000E82C5 /* ViewController.swift in Sources */,
 				F24792F525B08D45000E82C5 /* AppDelegate.swift in Sources */,
+				F2746DFA25B8B6BA00A5A3FE /* Affirmation.swift in Sources */,
+				F2746DFE25B8E57E00A5A3FE /* Quote.swift in Sources */,
 				F24792F725B08D45000E82C5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

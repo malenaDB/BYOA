@@ -15,7 +15,7 @@ class ViewController: UIViewController
     
     var myQuotes = [Quote]()
     var currentQuote = Quote(words: "Hello, this is a quote.", author: "-Malena")
-
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()

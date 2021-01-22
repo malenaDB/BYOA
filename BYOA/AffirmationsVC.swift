@@ -10,8 +10,8 @@ import UIKit
 
 class AffirmationsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
-   
-
+    
+    
     @IBOutlet weak var myTableView: UITableView!
     
     var mySection1 = [Affirmation]()
@@ -20,7 +20,7 @@ class AffirmationsVC: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
+        
         myTableView.delegate = self
         myTableView.dataSource = self
         
@@ -46,7 +46,7 @@ class AffirmationsVC: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-       {
+    {
         if section == 0
         {
             return mySection1.count
@@ -55,11 +55,11 @@ class AffirmationsVC: UIViewController, UITableViewDataSource, UITableViewDelega
         {
             return mySection2.count
         }
-       
-       }
-       
-       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-       {
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
         
         if indexPath.section == 0
@@ -72,16 +72,16 @@ class AffirmationsVC: UIViewController, UITableViewDataSource, UITableViewDelega
             let current = mySection2[indexPath.row]
             cell.textLabel?.text = current.title
         }
-    
+        
         return cell
-       }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.identifier == "toQuotesVC"
         {
             let destination = segue.destination as! QuotesVC
-           
+            
             if let indexPath = myTableView.indexPathForSelectedRow
             {
                 if indexPath.section == 0
@@ -101,7 +101,7 @@ class AffirmationsVC: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // MARK: This is where I create all of the affirmations (their emotion title, section, and affirmation options) as a type of the custom class Affirmation.  This function loadAffirmations() is called in viewDidLoad, but I moved it down here so it won't be in the way of the other code because it's a lot of words haha.
     func loadAffirmations()
-       {
+    {
         // first are all of the POSITIVE emotions.  They go in the global variable mySection1, and are in Section 0 (the first section) of the table view.
         
         let beautiful = Affirmation(title: "beautiful", section: 1, options: ["Yesss, get it!  I’m glad you feel beautiful… because you are beautiful, both inside and outside!", "Everyone deserves to feel beautiful, so I’m really glad that you’re feeling this way!  You are stunning, both inside and outside, and don’t let anyone tell you otherwise!", "Woo, go strut your stuff!  You are beauty, you are grace, you have a fantastic smile on your face!  You are gorgeous, both inside and outside.  I hope you have a beautiful day!"])
@@ -113,7 +113,7 @@ class AffirmationsVC: UIViewController, UITableViewDataSource, UITableViewDelega
         let happy = Affirmation(title: "happy", section: 1, options: ["Feeling happy is one of the best feelings ever.  I’m glad you feel this way, and I hope you have an incredible day!  Happiness looks great on you!", "I’m so happy that you’re happy!  Doesn’t happiness feel so great?  Happy happy happy!  You’re awesome!", "Happiness.  It’s refreshing, isn’t it?  I think you should celebrate your happiness by smiling in the mirror and giving yourself a big hug.  Go crush the day!"])
         
         let proud = Affirmation(title: "proud", section: 1, options: ["Yesss!  Strut with your head held high and let that pride shine!  I hope your day is as spectacular as you are!", "Pride is such a wonderful feeling and people don’t talk about it enough.  Good for you for being proud!  I’m sending all of my good vibes to you!", "Look at you go!  You are crushing it today!  You deserve to feel proud of yourself, and you should know that I’m proud of you!"])
-           
+        
         mySection1.append(beautiful)
         mySection1.append(energized)
         mySection1.append(excited)
@@ -140,8 +140,8 @@ class AffirmationsVC: UIViewController, UITableViewDataSource, UITableViewDelega
         mySection2.append(lonely)
         mySection2.append(sad)
         mySection2.append(stressed)
-
-       }
+        
+    }
     
     
     

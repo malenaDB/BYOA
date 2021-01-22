@@ -17,6 +17,7 @@
 		F2746DFA25B8B6BA00A5A3FE /* Affirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2746DF925B8B6BA00A5A3FE /* Affirmation.swift */; };
 		F2746DFC25B8B75700A5A3FE /* AffirmationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2746DFB25B8B75700A5A3FE /* AffirmationsVC.swift */; };
 		F2746DFE25B8E57E00A5A3FE /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2746DFD25B8E57E00A5A3FE /* Quote.swift */; };
+		F2811E2B25BB2C6500F0FFC6 /* MeditationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2811E2A25BB2C6500F0FFC6 /* MeditationVC.swift */; };
 		F284AB0B25B9C4BF00359BAB /* QuotesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F284AB0A25B9C4BF00359BAB /* QuotesVC.swift */; };
 		F284AB0D25BA3D8000359BAB /* HotlinesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F284AB0C25BA3D8000359BAB /* HotlinesVC.swift */; };
 		F284AB0F25BA3EEB00359BAB /* Hotline.swift in Sources */ = {isa = PBXBuildFile; fileRef = F284AB0E25BA3EEB00359BAB /* Hotline.swift */; };
@@ -35,6 +36,7 @@
 		F2746DF925B8B6BA00A5A3FE /* Affirmation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Affirmation.swift; sourceTree = "<group>"; };
 		F2746DFB25B8B75700A5A3FE /* AffirmationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffirmationsVC.swift; sourceTree = "<group>"; };
 		F2746DFD25B8E57E00A5A3FE /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
+		F2811E2A25BB2C6500F0FFC6 /* MeditationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationVC.swift; sourceTree = "<group>"; };
 		F284AB0A25B9C4BF00359BAB /* QuotesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotesVC.swift; sourceTree = "<group>"; };
 		F284AB0C25BA3D8000359BAB /* HotlinesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotlinesVC.swift; sourceTree = "<group>"; };
 		F284AB0E25BA3EEB00359BAB /* Hotline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hotline.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				F2746DFB25B8B75700A5A3FE /* AffirmationsVC.swift */,
 				F284AB0A25B9C4BF00359BAB /* QuotesVC.swift */,
 				F284AB0C25BA3D8000359BAB /* HotlinesVC.swift */,
+				F2811E2A25BB2C6500F0FFC6 /* MeditationVC.swift */,
 				F24792FA25B08D45000E82C5 /* Main.storyboard */,
 				F284AB0E25BA3EEB00359BAB /* Hotline.swift */,
 				F2746DFD25B8E57E00A5A3FE /* Quote.swift */,
@@ -164,6 +167,7 @@
 				F24792F925B08D45000E82C5 /* ViewController.swift in Sources */,
 				F284AB0D25BA3D8000359BAB /* HotlinesVC.swift in Sources */,
 				F284AB0B25B9C4BF00359BAB /* QuotesVC.swift in Sources */,
+				F2811E2B25BB2C6500F0FFC6 /* MeditationVC.swift in Sources */,
 				F24792F525B08D45000E82C5 /* AppDelegate.swift in Sources */,
 				F2746DFA25B8B6BA00A5A3FE /* Affirmation.swift in Sources */,
 				F284AB0F25BA3EEB00359BAB /* Hotline.swift in Sources */,
@@ -313,12 +317,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LAKV6P23PC;
 				INFOPLIST_FILE = BYOA/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.MDB.BYOA;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MDB.AffirmationStation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -330,12 +336,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LAKV6P23PC;
 				INFOPLIST_FILE = BYOA/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.MDB.BYOA;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MDB.AffirmationStation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

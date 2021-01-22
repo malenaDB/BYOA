@@ -11,5 +11,6 @@ import Foundation
 struct Affirmation
 {
     var title: String
+    var section: Int
     var options: [String]
 }

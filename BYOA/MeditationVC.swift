@@ -13,9 +13,18 @@ class MeditationVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelega
    
     @IBOutlet weak var timePickerView: UIPickerView!
     
-    @IBOutlet weak var secondsLabel: UILabel!
     
-    @IBOutlet weak var minutesLabel: UILabel!
+    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet weak var resetButton: UIButton!
+    
+    @IBOutlet weak var minutesLbl: UILabel!
+    @IBOutlet weak var secondsLbl: UILabel!
+    
+    @IBOutlet weak var timerMinutesLabel: UILabel!
+
+    @IBOutlet weak var timerSecondsLabel: UILabel!
+    
     
     var selectedMinutes = 0
     var totalMinutes = 0
@@ -27,27 +36,20 @@ class MeditationVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelega
     
     var timer = Timer()
     
-    
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
         timePickerView.delegate = self
         timePickerView.dataSource = self
+        
+        showPickerAndLblsAndStartButton()
+        emptyTextTimeLabels()
+        hideStopAndResetButtons()
+        startButton.isHidden = false
     }
     
-    
-    @objc func counter()
-       {
-           total -= 1
-           createMinutesSeconds()
-           setTimerLabel()
-           
-//           if total <= 0
-//           {
-//               resetTimer()
-//           }
-       }
     
     func createMinutesSeconds()
     {
@@ -57,36 +59,138 @@ class MeditationVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelega
     
     func setTimerLabel()
     {
-       secondsLabel.text = String(totalSeconds) + " Seconds"
-       minutesLabel.text = String(totalMinutes) + " Minutes"
+       timerSecondsLabel.text = String(totalSeconds) + " Seconds"
+       timerMinutesLabel.text = String(totalMinutes) + " Minutes"
+    }
+    
+    func resetTimer()
+    {
+        timer.invalidate()
+        createMinutesSeconds()
+        emptyTextTimeLabels()
+    
+        showPickerAndLblsAndStartButton()
+    }
+    
+    func hidePickerAndLblsAndStartButton()
+    {
+        timePickerView.isHidden = true
+        minutesLbl.isHidden = true
+        secondsLbl.isHidden = true
+        startButton.isHidden = true
+    }
+    
+    func showPickerAndLblsAndStartButton()
+    {
+        timePickerView.isHidden = false
+        minutesLbl.isHidden = false
+        secondsLbl.isHidden = false
+        startButton.isHidden = false
+    }
+    
+    func emptyTextTimeLabels()
+    {
+        timerMinutesLabel.text = ""
+        timerSecondsLabel.text = ""
+    }
+    
+    func hideStopAndResetButtons()
+    {
+      //  stopButton.isHidden = true
+     //   resetButton.isHidden = true
+    }
+    
+    func showStopAndResetButtons()
+    {
+        stopButton.isHidden = false
+        resetButton.isHidden = false
     }
     
     
+    @objc func counter()
+    {
+        total -= 1
+        createMinutesSeconds()
+        setTimerLabel()
+        
+        if total <= 0
+        {
+            resetTimer()
+        }
+    }
+
+    
+    @IBAction func startButtonTapped(_ sender: UIButton)
+    {
+        total = (totalMinutes * 60) + totalSeconds
+        print(counter)
+        timerMinutesLabel.isHidden = false
+        timerSecondsLabel.isHidden = false
+        
+        showStopAndResetButtons()
+       // hidePickerAndLblsAndStartButton()
+        
+        setTimerLabel()
+        
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(counter), userInfo: nil, repeats: true)
+    }
     
     
+    @IBAction func resetButtonTapped(_ sender: UIButton)
+    {
+        timer.invalidate()
+        total = 0
+       
+       // timerMinutesLabel.isHidden = true
+       // timerSecondsLabel.isHidden = true
+        
+        showPickerAndLblsAndStartButton()
+        startButton.isHidden = false
+    }
     
     
+    @IBAction func stopButtonTapped(_ sender: UIButton)
+    {
+        timer.invalidate()
+        startButton.isHidden = false
+        print("stopbuttontapped")
+    }
     
     
+
     
-    
-    // MARK: Set-up the picker views.
+    // MARK: Set-up the picker view.
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int
     {
-        return 2
+        return 4
     }
     
     // set the number of rows in each pickerview
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
     {
-        return 60 // there need to be 60 rows because this includes the number 0, and this will make the pickerview go up to 59
+        if component == 0 || component == 2
+        {
+            return 60 // there need to be 60 rows because this includes the number 0, and this will make the pickerview go up to 59
+        }
+        else
+        {
+            return 0
+        }
     }
     
     // set the text that will be in each row of the pickerview
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
     {
-        return String(row) // the label for each row will be whatever row number it is, but just written as a string
+        if component == 0 || component == 2
+        {
+            return String(row) // the label for each row will be whatever row number it is, but just written as a string
+        }
+        else
+        {
+            return ""
+        }
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
@@ -95,23 +199,11 @@ class MeditationVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelega
         {
             totalMinutes = row
         }
-        else
+        else if component == 2
         {
             totalSeconds = row
         }
     }
-    
-    
-    @IBAction func startButtonTapped(_ sender: UIButton)
-    {
-        print(selectedMinutes)
-        print(selectedSeconds)
-        
-        total = (totalMinutes * 60) + totalSeconds
-        
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(counter), userInfo: nil, repeats: true)
-    }
-    
 }
 
 

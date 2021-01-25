@@ -45,8 +45,8 @@ class MeditationVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelega
         timePickerView.dataSource = self
         
         showPickerAndLblsAndStartButton()
-        emptyTextTimeLabels()
-        hideStopAndResetButtons()
+        hideTimerLabels()
+        // hideStopAndResetButtons()
         startButton.isHidden = false
     }
     
@@ -55,19 +55,23 @@ class MeditationVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelega
     {
         totalMinutes = total / 60
         totalSeconds = total % 60
+        
+        print("creating minutes & seconds")
     }
     
     func setTimerLabel()
     {
-       timerSecondsLabel.text = String(totalSeconds) + " Seconds"
-       timerMinutesLabel.text = String(totalMinutes) + " Minutes"
+        timerSecondsLabel.text = String(totalSeconds) + " Seconds"
+        timerMinutesLabel.text = String(totalMinutes) + " Minutes"
+        
+        print("setting timer label")
     }
     
     func resetTimer()
     {
         timer.invalidate()
         createMinutesSeconds()
-        emptyTextTimeLabels()
+       // hideTimerLabels()
     
         showPickerAndLblsAndStartButton()
     }
@@ -88,16 +92,16 @@ class MeditationVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelega
         startButton.isHidden = false
     }
     
-    func emptyTextTimeLabels()
+    func hideTimerLabels()
     {
-        timerMinutesLabel.text = ""
-        timerSecondsLabel.text = ""
+        timerMinutesLabel.isHidden = true
+        timerSecondsLabel.isHidden = true
     }
     
     func hideStopAndResetButtons()
     {
-      //  stopButton.isHidden = true
-     //   resetButton.isHidden = true
+        stopButton.isHidden = true
+        resetButton.isHidden = true
     }
     
     func showStopAndResetButtons()
@@ -112,6 +116,8 @@ class MeditationVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelega
         total -= 1
         createMinutesSeconds()
         setTimerLabel()
+        
+        print(counter)
         
         if total <= 0
         {
@@ -139,13 +145,15 @@ class MeditationVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelega
     @IBAction func resetButtonTapped(_ sender: UIButton)
     {
         timer.invalidate()
+        print("timer should invalidate here")
         total = 0
-       
-       // timerMinutesLabel.isHidden = true
-       // timerSecondsLabel.isHidden = true
+        print(counter)
+       // hideTimerLabels()
         
         showPickerAndLblsAndStartButton()
         startButton.isHidden = false
+        
+        print("reset button tapped")
     }
     
     

@@ -46,7 +46,7 @@ class MeditationVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelega
         
         showPickerAndLblsAndStartButton()
         hideTimerLabels()
-        // hideStopAndResetButtons()
+        hideStopAndResetButtons()
         startButton.isHidden = false
     }
     
@@ -55,8 +55,6 @@ class MeditationVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelega
     {
         totalMinutes = total / 60
         totalSeconds = total % 60
-        
-        print("creating minutes & seconds")
     }
     
     func setTimerLabel()
@@ -64,14 +62,13 @@ class MeditationVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelega
         timerSecondsLabel.text = String(totalSeconds) + " Seconds"
         timerMinutesLabel.text = String(totalMinutes) + " Minutes"
         
-        print("setting timer label")
     }
     
     func resetTimer()
     {
         timer.invalidate()
         createMinutesSeconds()
-       // hideTimerLabels()
+        hideTimerLabels()
     
         showPickerAndLblsAndStartButton()
     }
@@ -116,9 +113,7 @@ class MeditationVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelega
         total -= 1
         createMinutesSeconds()
         setTimerLabel()
-        
-        print(counter)
-        
+                
         if total <= 0
         {
             resetTimer()
@@ -129,12 +124,12 @@ class MeditationVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelega
     @IBAction func startButtonTapped(_ sender: UIButton)
     {
         total = (totalMinutes * 60) + totalSeconds
-        print(counter)
+      
         timerMinutesLabel.isHidden = false
         timerSecondsLabel.isHidden = false
         
         showStopAndResetButtons()
-       // hidePickerAndLblsAndStartButton()
+        hidePickerAndLblsAndStartButton()
         
         setTimerLabel()
         
@@ -147,9 +142,9 @@ class MeditationVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelega
         timer.invalidate()
         print("timer should invalidate here")
         total = 0
-        print(counter)
-       // hideTimerLabels()
         
+        hideTimerLabels()
+        hideStopAndResetButtons()
         showPickerAndLblsAndStartButton()
         startButton.isHidden = false
         

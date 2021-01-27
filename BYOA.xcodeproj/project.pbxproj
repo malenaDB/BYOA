@@ -10,6 +10,10 @@
 		F211189A25BF052400141197 /* CreateYourListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F211189925BF052400141197 /* CreateYourListVC.swift */; };
 		F211189C25BF082A00141197 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = F211189B25BF082A00141197 /* Header.swift */; };
 		F211189E25BF083C00141197 /* CellText.swift in Sources */ = {isa = PBXBuildFile; fileRef = F211189D25BF083C00141197 /* CellText.swift */; };
+		F21118A625BF7CE200141197 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21118A525BF7CE200141197 /* NotificationCenter.framework */; };
+		F21118A925BF7CE200141197 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21118A825BF7CE200141197 /* TodayViewController.swift */; };
+		F21118AC25BF7CE200141197 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F21118AA25BF7CE200141197 /* MainInterface.storyboard */; };
+		F21118B025BF7CE200141197 /* BYOATodayExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F21118A325BF7CE200141197 /* BYOATodayExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F24792F525B08D45000E82C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24792F425B08D45000E82C5 /* AppDelegate.swift */; };
 		F24792F725B08D45000E82C5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24792F625B08D45000E82C5 /* SceneDelegate.swift */; };
 		F24792F925B08D45000E82C5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24792F825B08D45000E82C5 /* ViewController.swift */; };
@@ -26,10 +30,39 @@
 		F284AB0F25BA3EEB00359BAB /* Hotline.swift in Sources */ = {isa = PBXBuildFile; fileRef = F284AB0E25BA3EEB00359BAB /* Hotline.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		F21118AE25BF7CE200141197 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F24792E925B08D45000E82C5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F21118A225BF7CE200141197;
+			remoteInfo = BYOATodayExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F21118B125BF7CE200141197 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F21118B025BF7CE200141197 /* BYOATodayExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		F211189925BF052400141197 /* CreateYourListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateYourListVC.swift; sourceTree = "<group>"; };
 		F211189B25BF082A00141197 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		F211189D25BF083C00141197 /* CellText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellText.swift; sourceTree = "<group>"; };
+		F21118A325BF7CE200141197 /* BYOATodayExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BYOATodayExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F21118A525BF7CE200141197 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		F21118A825BF7CE200141197 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		F21118AB25BF7CE200141197 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		F21118AD25BF7CE200141197 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F24792F125B08D45000E82C5 /* BYOA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BYOA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F24792F425B08D45000E82C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F24792F625B08D45000E82C5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +82,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F21118A025BF7CE200141197 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F21118A625BF7CE200141197 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F24792EE25B08D45000E82C5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -59,10 +100,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F21118A425BF7CE200141197 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F21118A525BF7CE200141197 /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F21118A725BF7CE200141197 /* BYOATodayExtension */ = {
+			isa = PBXGroup;
+			children = (
+				F21118A825BF7CE200141197 /* TodayViewController.swift */,
+				F21118AA25BF7CE200141197 /* MainInterface.storyboard */,
+				F21118AD25BF7CE200141197 /* Info.plist */,
+			);
+			path = BYOATodayExtension;
+			sourceTree = "<group>";
+		};
 		F24792E825B08D45000E82C5 = {
 			isa = PBXGroup;
 			children = (
 				F24792F325B08D45000E82C5 /* BYOA */,
+				F21118A725BF7CE200141197 /* BYOATodayExtension */,
+				F21118A425BF7CE200141197 /* Frameworks */,
 				F24792F225B08D45000E82C5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -71,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				F24792F125B08D45000E82C5 /* BYOA.app */,
+				F21118A325BF7CE200141197 /* BYOATodayExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -90,8 +152,8 @@
 				F211189B25BF082A00141197 /* Header.swift */,
 				F211189D25BF083C00141197 /* CellText.swift */,
 				F284AB0E25BA3EEB00359BAB /* Hotline.swift */,
-				F2746DFD25B8E57E00A5A3FE /* Quote.swift */,
 				F2746DF925B8B6BA00A5A3FE /* Affirmation.swift */,
+				F2746DFD25B8E57E00A5A3FE /* Quote.swift */,
 				F247930025B08D48000E82C5 /* Assets.xcassets */,
 				F247930225B08D48000E82C5 /* LaunchScreen.storyboard */,
 				F247930525B08D48000E82C5 /* Info.plist */,
@@ -103,6 +165,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		F21118A225BF7CE200141197 /* BYOATodayExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F21118B425BF7CE200141197 /* Build configuration list for PBXNativeTarget "BYOATodayExtension" */;
+			buildPhases = (
+				F211189F25BF7CE200141197 /* Sources */,
+				F21118A025BF7CE200141197 /* Frameworks */,
+				F21118A125BF7CE200141197 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BYOATodayExtension;
+			productName = BYOATodayExtension;
+			productReference = F21118A325BF7CE200141197 /* BYOATodayExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		F24792F025B08D45000E82C5 /* BYOA */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F247930825B08D48000E82C5 /* Build configuration list for PBXNativeTarget "BYOA" */;
@@ -110,10 +189,12 @@
 				F24792ED25B08D45000E82C5 /* Sources */,
 				F24792EE25B08D45000E82C5 /* Frameworks */,
 				F24792EF25B08D45000E82C5 /* Resources */,
+				F21118B125BF7CE200141197 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F21118AF25BF7CE200141197 /* PBXTargetDependency */,
 			);
 			name = BYOA;
 			productName = BYOA;
@@ -130,6 +211,9 @@
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = MDB;
 				TargetAttributes = {
+					F21118A225BF7CE200141197 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
 					F24792F025B08D45000E82C5 = {
 						CreatedOnToolsVersion = 11.3.1;
 					};
@@ -149,11 +233,20 @@
 			projectRoot = "";
 			targets = (
 				F24792F025B08D45000E82C5 /* BYOA */,
+				F21118A225BF7CE200141197 /* BYOATodayExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F21118A125BF7CE200141197 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F21118AC25BF7CE200141197 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F24792EF25B08D45000E82C5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -167,6 +260,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F211189F25BF7CE200141197 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F21118A925BF7CE200141197 /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F24792ED25B08D45000E82C5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -190,7 +291,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		F21118AF25BF7CE200141197 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F21118A225BF7CE200141197 /* BYOATodayExtension */;
+			targetProxy = F21118AE25BF7CE200141197 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		F21118AA25BF7CE200141197 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F21118AB25BF7CE200141197 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		F24792FA25B08D45000E82C5 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -210,6 +327,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		F21118B225BF7CE200141197 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LAKV6P23PC;
+				INFOPLIST_FILE = BYOATodayExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.MDB.AffirmationStation.BYOATodayExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F21118B325BF7CE200141197 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LAKV6P23PC;
+				INFOPLIST_FILE = BYOATodayExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.MDB.AffirmationStation.BYOATodayExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		F247930625B08D48000E82C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -327,6 +482,7 @@
 		F247930925B08D48000E82C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LAKV6P23PC;
@@ -346,6 +502,7 @@
 		F247930A25B08D48000E82C5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LAKV6P23PC;
@@ -365,6 +522,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F21118B425BF7CE200141197 /* Build configuration list for PBXNativeTarget "BYOATodayExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F21118B225BF7CE200141197 /* Debug */,
+				F21118B325BF7CE200141197 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F24792EC25B08D45000E82C5 /* Build configuration list for PBXProject "BYOA" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

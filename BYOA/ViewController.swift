@@ -19,6 +19,19 @@ class ViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+    
+        setQuoteLabels()
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        print("view will appear")
+        
+        setQuoteLabels()
+    }
+    
+    func setQuoteLabels()
+    {
         loadQuotes()
         myQuotes.shuffle()
         

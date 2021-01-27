@@ -13,8 +13,6 @@ class CreateYourListVC: UIViewController, UITableViewDataSource, UITableViewDele
 
     @IBOutlet weak var listTableView: UITableView!
     var headers = [Header]()
-    var cells = [CellText]()
-    
     
     override func viewDidLoad()
     {
@@ -22,6 +20,8 @@ class CreateYourListVC: UIViewController, UITableViewDataSource, UITableViewDele
         
         listTableView.delegate = self
         listTableView.dataSource = self
+        
+        loadFromUserDefaults()
     }
     
     
@@ -41,9 +41,8 @@ class CreateYourListVC: UIViewController, UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-       // let current = headers[section]
-       // return current.items.count
-        return cells.count
+        let current = headers[section]
+        return current.items.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
@@ -56,20 +55,22 @@ class CreateYourListVC: UIViewController, UITableViewDataSource, UITableViewDele
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
-        //let currentHeader = headers[indexPath.section]
-        //let currentItem = currentHeader.items[indexPath.row]
-        //cell.textLabel?.text = currentItem.text
-        let currentCell = cells[indexPath.row]
-        cell.textLabel?.text = currentCell.text
+        let currentHeader = headers[indexPath.section]
+        let currentItem = currentHeader.items[indexPath.row]
+        cell.textLabel?.text = currentItem.text
         return cell
     }
-    
+   
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
+    {
+        return 45.0
+    }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     {
         let frame = listTableView.frame
 
         // create button
-        let button = UIButton(frame: CGRect(x: frame.width - 30, y: 7, width: 15, height: 15))
+        let button = UIButton(frame: CGRect(x: frame.width - 30, y: 15, width: 15, height: 15))
         button.tag = section
         
         // set the image for the button
@@ -84,14 +85,12 @@ class CreateYourListVC: UIViewController, UITableViewDataSource, UITableViewDele
         // add the target so the button can be tapped later and an action can be added to it
         button.addTarget(self, action: #selector(headerButtonAction(_:)), for: .touchUpInside)
         
-        return headerView
-        
-        
-        // let currentTitle = headers[section]
+        let currentTitle = headers[section]
 
-        // let label = UILabel(frame: CGRect(x: 20, y: 20, width: frame.size.width, height: frame.size.height))
-        // label.text = currentTitle.title
-        // return label
+        let label = UILabel(frame: CGRect(x: 20, y: 7.5, width: frame.size.width - 50, height: 30))
+        label.text = currentTitle.title
+        headerView.addSubview(label)
+        return headerView
     }
     
     
@@ -99,7 +98,8 @@ class CreateYourListVC: UIViewController, UITableViewDataSource, UITableViewDele
     @objc func headerButtonAction(_ sender:UIButton!)
     {
         print("Header button tapped")
-        addCellAlert()
+        let section = sender.tag
+        addCellAlert(section: section)
     }
     
     
@@ -124,9 +124,11 @@ class CreateYourListVC: UIViewController, UITableViewDataSource, UITableViewDele
             
             // MARK: create new header
             // note: we added ?? "" so that "New List" is the default header text if the user writes nothign
-            let newHeader = Header(title: cellNameTF.text ?? "New List", items: [CellText(text: "New Item")])
+            let newHeader = Header(title: cellNameTF.text ?? "New List", items: [])
             
             self.headers.append(newHeader)
+            
+            self.saveToUserDefaults()
             
             // reload the table
             self.listTableView.reloadData()
@@ -142,7 +144,7 @@ class CreateYourListVC: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     
-    func addCellAlert()
+    func addCellAlert(section: Int)
     {
         print("CELL ALERT should pop-up now")
 
@@ -163,11 +165,13 @@ class CreateYourListVC: UIViewController, UITableViewDataSource, UITableViewDele
              // MARK: create new assignment
              // note: we added ?? "" so that, if the user does not type anything into the text field and then presses submit, their assignment name will just say nothing because these are the defaults that we set.
             let newCell = CellText(text: cellTextTF.text ?? ":)")
-                    
-             // append to cell array
-            self.cells.append(newCell)  // FIGURE OUT HOW TO APPEND THE NEW CELL TO THE "ITEMS" STRUCT PART OF THE HEADER ARRAY
+                
+             // append to cell array            
+            self.headers[section].items.append(newCell)
              
 //             self.saveData() // this will save the new data to the device after we have appended the newAssignment to the assignments array
+            
+            self.saveToUserDefaults()
 //
              // reload the table
              self.listTableView.reloadData()
@@ -179,6 +183,45 @@ class CreateYourListVC: UIViewController, UITableViewDataSource, UITableViewDele
          addCellAlert.addAction(cancelButton)
 
          present(addCellAlert, animated:true, completion: nil)
+    }
+    
+    // this function will make it so the user can swipe on the cell to delete, but it gives me an error: thread sigabrt when I do it... :(
+    
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
+//    {
+//        if editingStyle == .delete
+//        {
+//            headers.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//            tableView.reloadData()
+//        } else if editingStyle == .insert
+//        {
+//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+//        }
+//    }
+    
+    
+    // MARK: Create functions to save data to user defaults
+    func saveToUserDefaults()
+    {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(headers)
+        {
+            let defaults = UserDefaults.standard
+            defaults.set(encoded, forKey: "SavedList")
+        }
+    }
+    
+    func loadFromUserDefaults()
+    {
+        if let savedList = UserDefaults.standard.object(forKey: "SavedList") as? Data
+        {
+            let decoder = JSONDecoder()
+            if let loadedList = try? decoder.decode([Header].self, from: savedList)
+            {
+                self.headers = loadedList
+            }
+        }
     }
 }
 

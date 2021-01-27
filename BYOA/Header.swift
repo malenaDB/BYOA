@@ -7,7 +7,7 @@
 //
 
 import Foundation
-struct Header
+struct Header: Codable
 {
     var title: String
     var items: [CellText]

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-struct CellText
+struct CellText: Codable
 {
     var text: String
 }

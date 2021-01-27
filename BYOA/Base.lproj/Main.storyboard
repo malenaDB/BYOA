@@ -108,6 +108,22 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gh9-Pu-N8o">
+                                <rect key="frame" x="8" y="7" width="340" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ITQ-ss-Pvu">
+                                <rect key="frame" x="339" y="70.5" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" backgroundImage="questionmark.circle" catalog="system">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="veG-NJ-rPx" kind="showDetail" id="gv9-CQ-kz5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.99607843139999996" green="1" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="sHO-eO-BK1"/>
@@ -126,6 +142,60 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xIL-LL-BIN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1925.5999999999999" y="-3276.611694152924"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="M42-dD-Bbf">
+            <objects>
+                <viewController id="veG-NJ-rPx" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4Cn-nz-JyP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRZ-CX-436">
+                                <rect key="frame" x="16" y="24" width="343" height="32.5"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="What is this list here for?">
+                                        <attributes>
+                                            <font key="NSFont" size="25" name="Futura-Medium"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JNL-Ag-hzr">
+                                <rect key="frame" x="16" y="81" width="343" height="515"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <mutableString key="content">This page is a totally customizable place for you (yes, you!) to write down any and all lists!  This could be a list of things that make you happy, a list of your favorite ways to de-stress, a list of your favorite songs, a to-do list, or even a grocery list!  If you have something to write down, we’ve got you covered!  Simply tap the + in the top right hand corner to create a new list.  Once you have a new list, you can tap the smaller + button on the list’s header to add items to your list.  List-making has never been so easy!  Happy listing!</mutableString>
+                                        <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <font key="NSFont" size="20" name="Futura-Medium"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineSpacing="1" defaultTabInterval="28" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.99607843139999996" green="1" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="vRZ-CX-436" firstAttribute="top" secondItem="sBe-PZ-UdO" secondAttribute="top" constant="24" id="0wx-ll-A1w"/>
+                            <constraint firstItem="sBe-PZ-UdO" firstAttribute="trailing" secondItem="vRZ-CX-436" secondAttribute="trailing" constant="16" id="44e-at-7Qu"/>
+                            <constraint firstItem="vRZ-CX-436" firstAttribute="leading" secondItem="sBe-PZ-UdO" secondAttribute="leading" constant="16" id="4Mg-70-PiZ"/>
+                            <constraint firstItem="JNL-Ag-hzr" firstAttribute="top" secondItem="vRZ-CX-436" secondAttribute="bottom" constant="24.5" id="IGy-9N-KBX"/>
+                            <constraint firstItem="JNL-Ag-hzr" firstAttribute="leading" secondItem="sBe-PZ-UdO" secondAttribute="leading" constant="16" id="SHJ-43-fjP"/>
+                            <constraint firstItem="sBe-PZ-UdO" firstAttribute="bottom" secondItem="JNL-Ag-hzr" secondAttribute="bottom" constant="51" id="Ti6-n1-igu"/>
+                            <constraint firstItem="sBe-PZ-UdO" firstAttribute="trailing" secondItem="JNL-Ag-hzr" secondAttribute="trailing" constant="16" id="YvW-x8-pFn"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="sBe-PZ-UdO"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZW3-W2-c7R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2812" y="-3277.5112443778112"/>
         </scene>
         <!--Meditate-->
         <scene sceneID="D4A-Ri-h3K">

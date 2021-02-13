@@ -114,10 +114,10 @@
                                 <state key="normal" title="Button"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ITQ-ss-Pvu">
-                                <rect key="frame" x="339" y="70.5" width="20" height="20"/>
+                                <rect key="frame" x="339" y="70.5" width="20" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" backgroundImage="questionmark.circle" catalog="system">
+                                <state key="normal" backgroundImage="info.circle" catalog="system">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -167,7 +167,7 @@
                                 <rect key="frame" x="16" y="81" width="343" height="515"/>
                                 <attributedString key="attributedText">
                                     <fragment>
-                                        <mutableString key="content">This page is a totally customizable place for you (yes, you!) to write down any and all lists!  This could be a list of things that make you happy, a list of your favorite ways to de-stress, a list of your favorite songs, a to-do list, or even a grocery list!  If you have something to write down, we’ve got you covered!  Simply tap the + in the top right hand corner to create a new list.  Once you have a new list, you can tap the smaller + button on the list’s header to add items to your list.  List-making has never been so easy!  Happy listing!</mutableString>
+                                        <string key="content">This page is a totally customizable place for you (yes, you!) to write down any and all lists!  This could be a list of things that make you happy, a list of your favorite ways to de-stress, a list of your favorite songs, a to-do list, or even a grocery list!  If you have something to write down, we’ve got you covered!  Simply tap the + in the top right hand corner to create a new list.  Once you have a new list, you can tap the smaller + button on the list’s header to add items to your list.  List-making has never been so easy!  Happy listing!</string>
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="20" name="Futura-Medium"/>
@@ -794,6 +794,7 @@
         <image name="arrow.2.circlepath.circle" catalog="system" width="64" height="60"/>
         <image name="heart.circle" catalog="system" width="64" height="60"/>
         <image name="heart.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="info.circle" catalog="system" width="64" height="60"/>
         <image name="list.bullet" catalog="system" width="64" height="44"/>
         <image name="moon.circle" catalog="system" width="64" height="60"/>
         <image name="moon.circle.fill" catalog="system" width="64" height="60"/>

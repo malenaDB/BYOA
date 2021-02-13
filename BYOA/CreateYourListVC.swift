@@ -69,22 +69,30 @@ class CreateYourListVC: UIViewController, UITableViewDataSource, UITableViewDele
     {
         let frame = listTableView.frame
 
-        // create button
-        let button = UIButton(frame: CGRect(x: frame.width - 30, y: 15, width: 15, height: 15))
-        button.tag = section
+        // create buttons
+        let headerPlusButton = UIButton(frame: CGRect(x: frame.width - 65, y: 15, width: 22.5, height: 22.5))
+        headerPlusButton.tag = section
+        
+        let headerTrashButton = UIButton(frame: CGRect(x: frame.width - 30, y: 10, width: 22.5, height: 30))
+        headerTrashButton.tag = section
+
         
         // set the image for the button
-        button.setImage(UIImage(systemName: "plus"), for: .normal)
+        headerPlusButton.setImage(UIImage(systemName: "plus"), for: .normal)
+        headerTrashButton.setImage(UIImage(systemName: "trash"), for: .normal)
 
         // create custom view for the header and adjust the size & background color
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height))
         headerView.backgroundColor = UIColor.systemGray5
-        // add the button to the view
-        headerView.addSubview(button)
+        
+        // add the buttons to the view
+        headerView.addSubview(headerPlusButton)
+        headerView.addSubview(headerTrashButton)
         
         // add the target so the button can be tapped later and an action can be added to it
-        button.addTarget(self, action: #selector(headerButtonAction(_:)), for: .touchUpInside)
-        
+        headerPlusButton.addTarget(self, action: #selector(headerPlusButtonAction(_:)), for: .touchUpInside)
+        headerTrashButton.addTarget(self, action: #selector(headerTrashButtonAction(_:)), for: .touchUpInside)
+    
         let currentTitle = headers[section]
 
         let label = UILabel(frame: CGRect(x: 20, y: 7.5, width: frame.size.width - 50, height: 30))
@@ -95,11 +103,42 @@ class CreateYourListVC: UIViewController, UITableViewDataSource, UITableViewDele
     
     
     // this is the action for when the + button in the header is tapped
-    @objc func headerButtonAction(_ sender:UIButton!)
+    @objc func headerPlusButtonAction(_ sender:UIButton!)
     {
         print("Header button tapped")
         let section = sender.tag
         addCellAlert(section: section)
+    }
+    
+    @objc func headerTrashButtonAction(_ sender:UIButton!)
+    {
+        print("Trash button tapped")
+        let section = sender.tag
+            
+        // create alert that appears when trash button is pressed
+        let deleteSectionAlert = UIAlertController(title: "Are you sure you want to delete this list?", message: "Once a list is deleted, it cannot be restored.", preferredStyle: .alert)
+        
+        // create the button on the alert that will delete the section/list (the header and all of its cells)
+        let deleteButton = UIAlertAction(title: "Delete List", style: .destructive, handler: {
+            action in
+            
+            // write code here for what happens when the user taps the "delete" button on the alert
+            self.headers.remove(at: section)
+            self.listTableView.reloadData()
+            
+            // save the new data
+            self.saveToUserDefaults()
+            
+            // reload the table
+            self.listTableView.reloadData()
+            
+        })
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        present(deleteSectionAlert, animated:true, completion: nil)
+        
+        // add the buttons to the alert.
+        deleteSectionAlert.addAction(deleteButton)
+        deleteSectionAlert.addAction(cancelButton)
     }
     
     
@@ -144,6 +183,9 @@ class CreateYourListVC: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     
+
+    
+    
     func addCellAlert(section: Int)
     {
         print("CELL ALERT should pop-up now")
@@ -185,20 +227,22 @@ class CreateYourListVC: UIViewController, UITableViewDataSource, UITableViewDele
          present(addCellAlert, animated:true, completion: nil)
     }
     
-    // this function will make it so the user can swipe on the cell to delete, but it gives me an error: thread sigabrt when I do it... :(
+    // this function will make it so the user can swipe on the cell to delete it.
     
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
-//    {
-//        if editingStyle == .delete
-//        {
-//            headers.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//            tableView.reloadData()
-//        } else if editingStyle == .insert
-//        {
-//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-//        }
-//    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
+    {
+        if editingStyle == .delete
+        {
+            headers[indexPath.section].items.remove(at: indexPath.row)
+           // headers.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadData()
+            saveToUserDefaults()
+        } else if editingStyle == .insert
+        {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        }
+    }
     
     
     // MARK: Create functions to save data to user defaults

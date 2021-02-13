@@ -11,12 +11,16 @@ import UIKit
 class CreateYourListVC: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
 
+    
+    @IBOutlet weak var editBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var listTableView: UITableView!
     var headers = [Header]()
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        listTableView.allowsSelectionDuringEditing = true
         
         listTableView.delegate = self
         listTableView.dataSource = self
@@ -65,15 +69,16 @@ class CreateYourListVC: UIViewController, UITableViewDataSource, UITableViewDele
     {
         return 45.0
     }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     {
         let frame = listTableView.frame
 
         // create buttons
-        let headerPlusButton = UIButton(frame: CGRect(x: frame.width - 65, y: 15, width: 22.5, height: 22.5))
+        let headerPlusButton = UIButton(frame: CGRect(x: frame.width - 30, y: 11, width: 22.5, height: 22.5))
         headerPlusButton.tag = section
         
-        let headerTrashButton = UIButton(frame: CGRect(x: frame.width - 30, y: 10, width: 22.5, height: 30))
+        let headerTrashButton = UIButton(frame: CGRect(x: frame.width - 65, y: 10, width: 22.5, height: 22.5))
         headerTrashButton.tag = section
 
         
@@ -93,6 +98,15 @@ class CreateYourListVC: UIViewController, UITableViewDataSource, UITableViewDele
         headerPlusButton.addTarget(self, action: #selector(headerPlusButtonAction(_:)), for: .touchUpInside)
         headerTrashButton.addTarget(self, action: #selector(headerTrashButtonAction(_:)), for: .touchUpInside)
     
+        if listTableView.isEditing == true
+        {
+            headerTrashButton.isHidden = false
+        }
+        else
+        {
+            headerTrashButton.isHidden = true
+        }
+        
         let currentTitle = headers[section]
 
         let label = UILabel(frame: CGRect(x: 20, y: 7.5, width: frame.size.width - 50, height: 30))
@@ -150,7 +164,7 @@ class CreateYourListVC: UIViewController, UITableViewDataSource, UITableViewDele
         addHeaderAlert.addTextField(configurationHandler: { // create the textfield on the alert
             // adjust how the textfield will look
             textfield in
-            textfield.placeholder = "Enter your text here."
+            textfield.placeholder = "Enter your text here"
         })
         
         // create the button on the alert that will submit the new assignment stuff
@@ -183,9 +197,6 @@ class CreateYourListVC: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     
-
-    
-    
     func addCellAlert(section: Int)
     {
         print("CELL ALERT should pop-up now")
@@ -194,7 +205,7 @@ class CreateYourListVC: UIViewController, UITableViewDataSource, UITableViewDele
          addCellAlert.addTextField(configurationHandler: { // create the textfield on the alert
             // adjust how the textfield will look
              textfield in
-             textfield.placeholder = "Enter your text here."
+             textfield.placeholder = "Enter your text here"
          })
          // create the button on the alert that will submit the new assignment stuff
          let submitButton = UIAlertAction(title: "Add", style: .default, handler: {
@@ -228,7 +239,6 @@ class CreateYourListVC: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     // this function will make it so the user can swipe on the cell to delete it.
-    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
     {
         if editingStyle == .delete
@@ -238,11 +248,166 @@ class CreateYourListVC: UIViewController, UITableViewDataSource, UITableViewDele
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.reloadData()
             saveToUserDefaults()
-        } else if editingStyle == .insert
+        }
+        else if editingStyle == .insert
         {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
+    
+   
+    @IBAction func editBarButtonItemTapped(_ sender: UIBarButtonItem)
+    {
+        print("edit button tapped")
+        // tell the table view that the user is editing it
+       // self.listTableView.isEditing = true
+        
+        // editBarButtonItem.title = "Done"
+        
+        if listTableView.isEditing == true
+        {
+            listTableView.isEditing = false
+            editBarButtonItem.title = "Edit"
+        }
+        else
+        {
+            listTableView.isEditing = true
+            editBarButtonItem.title = "Done"
+        }
+        
+        listTableView.reloadData()
+        saveToUserDefaults()
+    }
+    
+    // tell the table view that we want to be able to move cells around
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool
+    {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)
+    {
+        let cellToMove = headers[sourceIndexPath.section].items[sourceIndexPath.row]
+        
+        // delete the cellToMove from its original location
+        headers[sourceIndexPath.section].items.remove(at: sourceIndexPath.row)
+        
+        // move cellToMove to the destination
+        headers[destinationIndexPath.section].items.insert(cellToMove, at: destinationIndexPath.row)
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        var selectedCell = headers[indexPath.section].items[indexPath.row]
+        
+        if listTableView.isEditing == true
+        {
+            let replacementCellAlert = UIAlertController(title: "Rename Your Item", message: "Fill in the textfield with what you would like to rename your item!", preferredStyle: .alert)
+            replacementCellAlert.addTextField(configurationHandler: { // create the textfield on the alert
+                // adjust how the textfield will look
+                textfield in
+                textfield.placeholder = "Enter your text here"
+                textfield.text = selectedCell.text
+            })
+            // create the button on the alert that will submit the new assignment stuff
+            let submitButton = UIAlertAction(title: "Add", style: .default, handler: {
+                action in
+                // write code here for what happens when the user taps the "submit" button on the alert
+                
+                // create the outlet for the text field (TF) in the alert so then we can refer to them later
+                let cellTextTF = replacementCellAlert.textFields![0]
+                
+                // MARK: create new assignment
+                // note: we added ?? "" so that, if the user does not type anything into the text field and then presses submit, their assignment name will just say nothing because these are the defaults that we set.
+        
+                let replacementCell = CellText(text: cellTextTF.text ?? ":)")
+                
+                // append to cell array
+                // self.headers[section].items.append(newCell)
+                
+                self.headers[indexPath.section].items.remove(at: indexPath.row)
+                self.headers[indexPath.section].items.insert(replacementCell, at: indexPath.row)
+                
+                
+                //             self.saveData() // this will save the new data to the device after we have appended the newAssignment to the assignments array
+                
+                self.saveToUserDefaults()
+                //
+                // reload the table
+                self.listTableView.reloadData()
+                
+            })
+            let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            // above, we created the buttons for the alert, but we never actually added them to the alert.  So, now we are adding the buttons to the alert.
+            replacementCellAlert.addAction(submitButton)
+            replacementCellAlert.addAction(cancelButton)
+            
+            present(replacementCellAlert, animated:true, completion: nil)
+        }
+            
+            
+//
+//            func renameCellAlert(section: Int)
+//            {
+//                print("tapped cell in editing mode")
+//                print(selectedCell.text)
+//
+//                let renameCellAlert = UIAlertController(title: "Rename Your Item", message: "Fill in the textfield with what you would like to rename your item!", preferredStyle: .alert)
+//                renameCellAlert.addTextField(configurationHandler: { // create the textfield on the alert
+//                    // adjust how the textfield will look
+//                    textfield in
+//                    textfield.placeholder = "Enter your text here"
+//                    textfield.text = selectedCell.text
+//                })
+//                // create the button on the alert that will submit the new assignment stuff
+//                let submitButton = UIAlertAction(title: "Rename", style: .default, handler: {
+//                    action in
+//
+//                    // create the outlet for the text field (TF) in the alert so then we can refer to it later
+//                    let cellTextTF = renameCellAlert.textFields![0]
+//                    print("textfield: " + (cellTextTF.text ?? ""))
+//
+//
+//                    //  let newCell = CellText(text: cellTextTF.text ?? ":)")
+//
+//                    selectedCell.text = "this is the renamed cell text"
+//
+//                    print("new cell text: " + selectedCell.text)
+//
+//                    self.headers[section].items.append(selectedCell)
+//
+//                    //selectedCell.text = cellTextTF.text ?? ""
+//
+//
+//                    self.saveToUserDefaults()
+//                    // reload the table
+//                    self.listTableView.reloadData()
+//
+//                })
+//                let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//                // above, we created the buttons for the alert, but we never actually added them to the alert.  So, now we are adding the buttons to the alert.
+//                renameCellAlert.addAction(submitButton)
+//                renameCellAlert.addAction(cancelButton)
+//
+//                present(renameCellAlert, animated:true, completion: nil)
+//            }
+//
+//            renameCellAlert(section: indexPath.row)
+//        }
+        else
+        {
+            // Leave this part empty becaus we don't want anything to happen if a cell is tapped when the tableview is not in editing mode. :)
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     // MARK: Create functions to save data to user defaults
@@ -268,6 +433,5 @@ class CreateYourListVC: UIViewController, UITableViewDataSource, UITableViewDele
         }
     }
 }
-
 
 

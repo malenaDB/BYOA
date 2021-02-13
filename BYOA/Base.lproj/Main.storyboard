@@ -129,13 +129,21 @@
                         <viewLayoutGuide key="safeArea" id="sHO-eO-BK1"/>
                     </view>
                     <navigationItem key="navigationItem" id="eIu-9G-oWd">
-                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="nWV-LN-qtQ">
-                            <connections>
-                                <action selector="addButtonTapped:" destination="Zlo-Mh-xwq" id="XzQ-oy-4p7"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Edit" id="gEN-0H-wiS">
+                                <connections>
+                                    <action selector="editBarButtonItemTapped:" destination="Zlo-Mh-xwq" id="ZXw-lh-z0Q"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="plus" catalog="system" id="nWV-LN-qtQ">
+                                <connections>
+                                    <action selector="addButtonTapped:" destination="Zlo-Mh-xwq" id="XzQ-oy-4p7"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="editBarButtonItem" destination="gEN-0H-wiS" id="gNM-hy-0ZK"/>
                         <outlet property="listTableView" destination="QbP-pd-Xoi" id="drA-YD-cT1"/>
                     </connections>
                 </viewController>
